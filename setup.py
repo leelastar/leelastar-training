@@ -2,10 +2,11 @@
 from os.path import realpath, dirname, join
 from setuptools import setup, find_packages
 
-DISTNAME = "leelastar"
-DESCRIPTION = "LeelaStar: Crowd-Sourced Deep Reinforcement Learning"
-AUTHOR = "LeelaStar Developers"
-AUTHOR_EMAIL = "leelastar.devs@gmail.com"
+
+DISTNAME = 'leelastar'
+DESCRIPTION = 'LeelaStar: Crowd-Sourced Deep Reinforcement Learning Agent for Starcraft 2'
+AUTHOR = 'LeelaStar Developers'
+AUTHOR_EMAIL = 'leelastar.devs@gmail.com'
 URL = "https://github.com/leelastar/leelastar-training"
 LICENSE = "Apache License, Version 2.0"
 VERSION = "0.0.1"
