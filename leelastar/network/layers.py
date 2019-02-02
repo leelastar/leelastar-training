@@ -1,6 +1,13 @@
-import torch.nn as nn
+"""
+@file: layers.py
+Created on 02.02.19
+@project: LeelaStar
+@author: kiudee
 
+Groups the defined basic layer types used for the project
+"""
 from collections import OrderedDict
+import torch.nn as nn
 
 
 class SqueezeExcitation(nn.Module):
@@ -23,7 +30,7 @@ class SqueezeExcitation(nn.Module):
 
     def forward(self, x):
         x_before = x
-        n, c, h, w = x.size()
+        n, c, _, _ = x.size()
 
         x = self.global_pooling(x).view(n, c)
         x = self.dense_linear_1(x)
@@ -48,20 +55,10 @@ class ResidualBlock(nn.Sequential):
         super().__init__(
             OrderedDict(
                 [
-                    (
-                        "conv_layer_1",
-                        nn.Conv2d(
-                            channels, channels, kernel_size, padding=1, bias=False
-                        ),
-                    ),
+                    ("conv_layer_1", nn.Conv2d(channels, channels, kernel_size, padding=1, bias=False)),
                     ("batch_norm_1", nn.BatchNorm2d(channels)),
                     ("relu", nn.ReLU(inplace=True)),
-                    (
-                        "conv_layer_2",
-                        nn.Conv2d(
-                            channels, channels, kernel_size, padding=1, bias=False
-                        ),
-                    ),
+                    ("conv_layer_2", nn.Conv2d(channels, channels, kernel_size, padding=1, bias=False)),
                     ("batch_norm_2", nn.BatchNorm2d(channels)),
                     ("squeeze_ex", SqueezeExcitation(channels, se_ratio)),
                 ]
